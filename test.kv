@@ -1,0 +1,41 @@
+MainWidget:
+<MainWidget>:
+    canvas.before:
+        Color:
+            rgba: 0, 0.8, 0.8, 0.8
+        Rectangle:
+            size: self.size
+    menu_widget: menu_widget
+    GridLayout:
+        cols: 1
+        size_hint: 0.4, 0.2
+        pos_hint: {"center_x":0.5,"center_y":0.5}
+        GridLayout:
+            cols: 2
+            Label:
+                text: "First Name:"
+                font_size: self.width/8
+            TextInput:
+                multiline: False
+            Label:
+                text: "Last Name"
+                font_size: self.width/8
+            TextInput:
+                multiline: False
+        Button:
+            text: "S u b m i t"
+            font_size: self.width/12
+    SecondWidget:
+        id: menu_widget
+
+
+<SecondWidget>:
+    canvas:
+        Color:
+            rgba: 0, 0.8, 0.8, 1
+        Rectangle:
+            size: self.size
+    Label:
+        text: "W E L C O M E"
+        font_size: dp(50)
+        pos_hint: {"center_x":0.5,"center_y":0.5}
