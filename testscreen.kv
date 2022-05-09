@@ -1,0 +1,82 @@
+AllScreenManager:
+    ScreenOne:
+    ScreenTwo:
+    ScreenThree:
+
+<ScreenOne>:
+    name: "WelcomePage"
+    MainWidget:
+<ScreenTwo>:
+    name: "ID_DOC"
+    AndroidCamera:
+<ScreenThree>:
+    name: "Selfie"
+
+<SecondWidget>:
+    canvas:
+        Color:
+            rgba: 0, 0.8, 0.8, 1
+        Rectangle:
+            size: self.size
+    Label:
+        text: "W E L C O M E"
+        font_size: dp(50)
+        pos_hint: {"center_x":0.5,"center_y":0.5}
+
+<MainWidget>:
+    canvas.before:
+        Color:
+            rgba: 0, 0.8, 0.8, 0.8
+        Rectangle:
+            size: self.size
+    menu_widget: menu_widget
+    GridLayout:
+        cols: 1
+        size_hint: 1, 0.6
+        pos_hint: {"center_x":0.5,"center_y":0.5}
+        GridLayout:
+
+            cols: 1
+            TextInput:
+                id: name
+                hint_text: "Name"
+                multiline: False
+            TextInput:
+                hint_text: "Last Name"
+                multiline: False
+            TextInput:
+                hint_text: "Email"
+                multiline: False
+        Button:
+            text: "S u b m i t"
+            font_size: self.width/16
+            size_hint: 1, 0.2
+            on_release:
+                app.root.current = "ID_DOC" if len(name.text)>0 else "WelcomePage"
+                root.parent.manager.transition.direction = "left"
+    SecondWidget:
+        id: menu_widget
+
+<AndroidCamera>:
+    orientation: 'vertical'
+    canvas.before:
+        Color:
+            rgba: 0, 0.8, 0.8, 0.8
+        Rectangle:
+            size: self.size
+    GridLayout:
+        cols:1
+        BoxLayout:
+            size_hint: .9,.6
+            Camera:
+
+                id: camera
+                resolution: self.resolution
+                play: True
+        BoxLayout:
+            size_hint: 1,.1
+            Button:
+                text: 'Capture'
+                font_size: self.width/20
+                pos_hint: {"top" : 1}
+                on_press: root.capture()
